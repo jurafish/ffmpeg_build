@@ -14,7 +14,7 @@ jobs:
       fail-fast: true
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
     - name: Install MSYS2
       run: choco install msys2 --no-progress
     - name: Checkout FFmpeg
@@ -27,7 +27,7 @@ jobs:
       shell: cmd
       env:
         HOME: ${{ runner.workspace }}/ffmpeg_build
-    - uses: actions/upload-artifact@master
+    - uses: actions/ffmpeg_build@master
       name: Upload Artifact
       with:
         name: ffmpeg
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
-        uses: actions/download-artifact@master
+        uses: actions/ffmpeg_build@master
         with:
           name: ffmpeg
       - name: Zip
